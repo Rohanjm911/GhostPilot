@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.tauri.app/v2/config.json",
+  "productName": "GhostPilot",
+  "version": "1.0.0",
+  "identifier": "com.ghostpilot.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "GhostPilot — Command your machine in plain English",
+        "label": "main",
+        "width": 1240,
+        "height": 840,
+        "minWidth": 960,
+        "minHeight": 640,
+        "center": true,
+        "resizable": true,
+        "decorations": true,
+        "transparent": false,
+        "shadow": true
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "trayIcon": {
+      "iconPath": "icons/icon.ico",
+      "tooltip": "GhostPilot — Command your machine in plain English"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": []
+  }
+}

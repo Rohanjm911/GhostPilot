@@ -1,0 +1,9 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/automation-engine"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/automation-engine"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

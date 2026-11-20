@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" width="100%" height="460" style="background: transparent; font-family: 'Consolas', 'Courier New', monospace;">
+  <defs>
+    <filter id="neo-shadow" x="0" y="0" width="120%" height="120%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
+    <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#25252D" />
+    </pattern>
+  </defs>
+
+  <style>
+    /* Cursor Blink Animation */
+    .cursor-blink {
+      animation: blink 0.9s infinite;
+    }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* Animated typing steps */
+    .prompt-text {
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      fill: #000000;
+    }
+
+    /* Progress Bar Animation */
+    .progress-fill {
+      animation: fillBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes fillBar {
+      0% { width: 0px; }
+      15% { width: 40px; }
+      35% { width: 220px; }
+      65% { width: 560px; }
+      85%, 100% { width: 780px; }
+    }
+
+    /* Log lines progressive display (fade-in sequence without transform override) */
+    .log-line-1 { animation: showLine1 6s ease-out infinite; }
+    .log-line-2 { animation: showLine2 6s ease-out infinite; }
+    .log-line-3 { animation: showLine3 6s ease-out infinite; }
+    .log-line-4 { animation: showLine4 6s ease-out infinite; }
+    .log-line-5 { animation: showLine5 6s ease-out infinite; }
+
+    @keyframes showLine1 {
+      0%, 10% { opacity: 0; }
+      16%, 100% { opacity: 1; }
+    }
+    @keyframes showLine2 {
+      0%, 26% { opacity: 0; }
+      32%, 100% { opacity: 1; }
+    }
+    @keyframes showLine3 {
+      0%, 44% { opacity: 0; }
+      50%, 100% { opacity: 1; }
+    }
+    @keyframes showLine4 {
+      0%, 62% { opacity: 0; }
+      68%, 100% { opacity: 1; }
+    }
+    @keyframes showLine5 {
+      0%, 80% { opacity: 0; }
+      86%, 100% { opacity: 1; }
+    }
+
+    .badge-pulse {
+      animation: badgeGlow 2.5s ease-in-out infinite;
+    }
+    @keyframes badgeGlow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+
+  <!-- Canvas Backdrop -->
+  <rect x="0" y="0" width="900" height="460" rx="12" fill="#0D0D11" />
+  <rect x="0" y="0" width="900" height="460" rx="12" fill="url(#dot-grid)" />
+
+  <!-- Window Container: Floating Spotlight Launcher (Neo-Brutalist Frame) -->
+  <g transform="translate(45, 20)">
+    <!-- Offset Hard Shadow -->
+    <rect x="8" y="8" width="810" height="415" rx="8" fill="#B8FF00" />
+    
+    <!-- Window Body -->
+    <rect x="0" y="0" width="810" height="415" rx="8" fill="#14141A" stroke="#000000" stroke-width="3.5" />
+
+    <!-- Window Top Header Bar -->
+    <rect x="0" y="0" width="810" height="44" rx="8" fill="#F4F4F0" stroke="#000000" stroke-width="3" />
+    <rect x="0" y="36" width="810" height="8" fill="#F4F4F0" />
+    <line x1="0" y1="44" x2="810" y2="44" stroke="#000000" stroke-width="3" />
+
+    <!-- Header Window Dots -->
+    <circle cx="24" cy="22" r="6" fill="#FF4D4D" stroke="#000000" stroke-width="2" />
+    <circle cx="44" cy="22" r="6" fill="#FFD600" stroke="#000000" stroke-width="2" />
+    <circle cx="64" cy="22" r="6" fill="#B8FF00" stroke="#000000" stroke-width="2" />
+
+    <text x="88" y="27" fill="#000000" font-size="12" font-family="'Space Grotesk', sans-serif" font-weight="900" letter-spacing="1">
+      ⚡ GHOSTPILOT SPOTLIGHT // <tspan fill="#000000">ALT + SPACE</tspan>
+    </text>
+
+    <!-- Top-Right Status Badge -->
+    <g transform="translate(640, 10)">
+      <rect x="0" y="0" width="155" height="24" rx="4" fill="#000000" />
+      <circle cx="14" cy="12" r="4" fill="#B8FF00" class="badge-pulse" />
+      <text x="26" y="16" fill="#B8FF00" font-size="10.5" font-family="'Consolas', monospace" font-weight="700">AI COMPILED: OK</text>
+    </g>
+
+    <!-- Spotlight Command Bar Input Box -->
+    <g transform="translate(16, 58)">
+      <!-- Hard Shadow for Input -->
+      <rect x="4" y="4" width="778" height="58" rx="6" fill="#000000" />
+      <rect x="0" y="0" width="778" height="58" rx="6" fill="#F4F4F0" stroke="#000000" stroke-width="3" />
+      
+      <!-- Ghost Prompt Icon -->
+      <text x="18" y="37" font-size="22">👻</text>
+      
+      <!-- User Natural Language Prompt Typed Out -->
+      <text x="54" y="36" font-size="14.5" class="prompt-text">
+        Organize all PDFs and ZIPs in Downloads every night at 10 PM
+      </text>
+      <rect x="635" y="18" width="3" height="24" fill="#B8FF00" stroke="#000" stroke-width="0.8" class="cursor-blink" />
+
+      <!-- Action Chips on the right side of input -->
+      <g transform="translate(650, 14)">
+        <rect x="0" y="0" width="112" height="30" rx="4" fill="#B8FF00" stroke="#000000" stroke-width="2" />
+        <text x="56" y="19" fill="#000000" font-size="11" font-family="'Space Grotesk', sans-serif" font-weight="900" text-anchor="middle">
+          ⚡ COMPILE (↵)
+        </text>
+      </g>
+    </g>
+
+    <!-- Subsystem Status Badges Row -->
+    <g transform="translate(16, 130)">
+      <!-- Badge 1: Sandbox Risk -->
+      <rect x="0" y="0" width="125" height="26" rx="4" fill="#B8FF00" stroke="#000000" stroke-width="2" />
+      <text x="62" y="17" fill="#000000" font-size="11" font-weight="900" text-anchor="middle">🛡️ RISK: SAFE</text>
+
+      <!-- Badge 2: Dry Run Mode -->
+      <rect x="135" y="0" width="145" height="26" rx="4" fill="#FFD600" stroke="#000000" stroke-width="2" />
+      <text x="207" y="17" fill="#000000" font-size="11" font-weight="900" text-anchor="middle">🧪 DRY-RUN: PASS</text>
+
+      <!-- Badge 3: Target Path -->
+      <rect x="290" y="0" width="220" height="26" rx="4" fill="#00E5FF" stroke="#000000" stroke-width="2" />
+      <text x="400" y="17" fill="#000000" font-size="11" font-weight="900" text-anchor="middle">📁 %USERPROFILE%\Downloads</text>
+
+      <!-- Badge 4: Schedule Trigger -->
+      <rect x="520" y="0" width="180" height="26" rx="4" fill="#F4F4F0" stroke="#000000" stroke-width="2" />
+      <text x="610" y="17" fill="#000000" font-size="11" font-weight="900" text-anchor="middle">⏰ CRON: 22:00:00 DAILY</text>
+    </g>
+
+    <!-- Animated Execution Log Terminal Box -->
+    <g transform="translate(16, 172)">
+      <!-- Log Box Frame -->
+      <rect x="0" y="0" width="778" height="175" rx="6" fill="#08080A" stroke="#26262E" stroke-width="2" />
+      
+      <!-- Terminal Header -->
+      <rect x="0" y="0" width="778" height="28" rx="6" fill="#121216" />
+      <rect x="0" y="22" width="778" height="6" fill="#121216" />
+      <text x="14" y="18" fill="#71717A" font-size="10" font-weight="700" letter-spacing="1">
+        LIVE ENGINE AUDIT DISPATCH [CREATE_NO_WINDOW // SILENT]
+      </text>
+
+      <!-- Log Content -->
+      <g transform="translate(14, 46)">
+        <!-- Line 1 -->
+        <g transform="translate(0, 0)">
+          <g class="log-line-1">
+            <text x="0" y="0" fill="#B8FF00" font-size="12" font-weight="700">✔ [SCAN_FILES]</text>
+            <text x="130" y="0" fill="#E4E4E7" font-size="12">Identified 14 PDFs and 4 ZIPs in Downloads folder (58.4 MB total)</text>
+          </g>
+        </g>
+
+        <!-- Line 2 -->
+        <g transform="translate(0, 24)">
+          <g class="log-line-2">
+            <text x="0" y="0" fill="#00E5FF" font-size="12" font-weight="700">✔ [CREATE_DIR]</text>
+            <text x="130" y="0" fill="#E4E4E7" font-size="12">Verified &amp; created destinations: \Downloads\PDFs and \Downloads\ZIPs</text>
+          </g>
+        </g>
+
+        <!-- Line 3 -->
+        <g transform="translate(0, 48)">
+          <g class="log-line-3">
+            <text x="0" y="0" fill="#FFD600" font-size="12" font-weight="700">✔ [ORGANIZE]</text>
+            <text x="130" y="0" fill="#E4E4E7" font-size="12">Batch relocated 18 files with collision-safe automatic incremental naming</text>
+          </g>
+        </g>
+
+        <!-- Line 4 -->
+        <g transform="translate(0, 72)">
+          <g class="log-line-4">
+            <text x="0" y="0" fill="#A78BFA" font-size="12" font-weight="700">✔ [SCHEDULE]</text>
+            <text x="130" y="0" fill="#E4E4E7" font-size="12">Registered persistent recurring cron in ghostpilot.db (trigger: 22:00:00 daily)</text>
+          </g>
+        </g>
+
+        <!-- Line 5 -->
+        <g transform="translate(0, 96)">
+          <g class="log-line-5">
+            <text x="0" y="0" fill="#B8FF00" font-size="12" font-weight="900">⚡ [COMPLETE]</text>
+            <text x="130" y="0" fill="#B8FF00" font-size="12" font-weight="700">Execution verified in 142ms. Zero command prompt windows spawned.</text>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- Animated Progress Bar Container -->
+    <g transform="translate(16, 360)">
+      <rect x="0" y="0" width="778" height="18" rx="4" fill="#08080A" stroke="#26262E" stroke-width="1.5" />
+      <rect class="progress-fill" x="2" y="2" height="14" rx="2" fill="#B8FF00" />
+    </g>
+
+    <!-- Footer Stats Row -->
+    <g transform="translate(16, 396)">
+      <text x="0" y="0" fill="#A1A1AA" font-size="11">Subsystems: <tspan fill="#B8FF00">Tauri v2</tspan> • <tspan fill="#00E5FF">Python 3.14</tspan> • <tspan fill="#FFD600">SQLite</tspan> • <tspan fill="#F4F4F0">Ollama AI</tspan></text>
+      <text x="778" y="0" fill="#A1A1AA" font-size="11" text-anchor="end">Engine Latency: <tspan fill="#B8FF00">0.14s</tspan> | Status: <tspan fill="#B8FF00">READY</tspan></text>
+    </g>
+  </g>
+</svg>

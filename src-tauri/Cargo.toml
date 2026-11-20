@@ -1,0 +1,22 @@
+[package]
+name = "ghostpilot"
+version = "1.0.0"
+description = "GhostPilot - Command your machine in plain English (Windows 11 Desktop Automation)"
+authors = ["GhostPilot Authors"]
+edition = "2021"
+
+[lib]
+name = "ghostpilot_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.2", features = [] }
+
+[dependencies]
+tauri = { version = "2.2", features = ["tray-icon"] }
+tauri-plugin-shell = "2.2"
+tauri-plugin-notification = "2.2"
+tauri-plugin-global-shortcut = "2.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.43", features = ["full"] }

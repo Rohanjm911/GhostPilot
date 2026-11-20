@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build Artifacts
+dist/
+dist-ssr/
+*.local
+
+# Tauri / Rust Build Cache
+src-tauri/target/
+src-tauri/gen/
+**/*.rs.bk
+
+# Python Bytecode & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+*.egg-info/
+*.spec
+
+# Databases & Runtime Logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/settings.json
+
+# Intermediate compiler files
+*.pdb
+*.obj
+*.lib
