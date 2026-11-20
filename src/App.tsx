@@ -9,10 +9,15 @@ import { WorkflowPlan, SimulationResult } from './types';
 import { tauriApi } from './lib/tauriClient';
 
 export function App() {
-  const [showSplash, setShowSplash] = useState(true);
-  const [showHowToUse, setShowHowToUse] = useState(false);
+  const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const initialMode = urlParams?.get('mode') === 'spotlight' ? 'spotlight' : 'studio';
+  const initialSplash = urlParams?.get('splash') === 'false' ? false : true;
+  const initialGuide = urlParams?.get('guide') === 'true';
+
+  const [showSplash, setShowSplash] = useState(initialSplash);
+  const [showHowToUse, setShowHowToUse] = useState(initialGuide);
   const [injectedPrompt, setInjectedPrompt] = useState<string>('');
-  const [viewMode, setViewMode] = useState<'studio' | 'spotlight'>('studio');
+  const [viewMode, setViewMode] = useState<'studio' | 'spotlight'>(initialMode);
   const [activePlanForSim, setActivePlanForSim] = useState<WorkflowPlan | null>(null);
   const [simulationResult, setSimulationResult] = useState<SimulationResult | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
@@ -93,6 +98,17 @@ export function App() {
       window.removeEventListener('switch-mode', handleSwitchMode);
       window.removeEventListener('keydown', handleKeyDown);
     };
+  }, []);
+
+  // Auto-open dry-run modal if requested via URL
+  useEffect(() => {
+    if (urlParams?.get('dryrun') === 'true') {
+      tauriApi
+        .compilePrompt('Organize all PDFs and ZIPs in my Downloads folder into separate subfolders every night at 10 PM')
+        .then((p) => {
+          handleOpenDryRun(p);
+        });
+    }
   }, []);
 
   // Handle dry-run simulation modal

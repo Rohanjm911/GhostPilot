@@ -88,6 +88,18 @@ GhostPilot includes a high-speed animated intro and a built-in user guide:
 - **Sleek Startup Screen**: Animated pulse logo, cyber grid backdrop, progressive diagnostic logs, and animated loading bar (press `Esc` or `Space` to skip).
 - **Interactive "How to Use" Popup**: Press **`F1`** or click **`How to Use (?)`** in the header to open a 5-tab walkthrough with 1-click test prompts and copyable cheat sheets.
 
+<div align="center">
+  <img src="assets/screenshots/how-to-use-guide.png" alt="GhostPilot Interactive Guide Modal" width="95%" />
+  <p align="center"><sub><b>Figure 1:</b> Real running UI capture of the built-in 5-tab Interactive Walkthrough & Prompt Cheat Sheet (<kbd>F1</kbd>).</sub></p>
+</div>
+
+> [!NOTE]
+> **Key Interactive Guide Highlights:**
+> - 📑 **5 Curated Walkthrough Tabs**: Switch seamlessly between `Overview`, `File Automation`, `System Cleanup`, `App Workspaces`, and `Shortcuts Reference`.
+> - ⚡ **1-Click Prompt Injector**: Clicking any preloaded recipe automatically loads it into the compiler pipeline without manual typing.
+> - 📋 **Canonical Path Reference**: Pre-calculated Windows path cheat sheets (`%USERPROFILE%\Downloads`, `%TEMP%`, `%APPDATA%`).
+> - ⌨️ **Universal Hotkey Access**: Hit <kbd>F1</kbd> or click the `How to Use (?)` button anytime to toggle the walkthrough modal without interrupting active background jobs.
+
 ---
 
 ## ⚡ Live Spotlight Demo & Execution Simulation
@@ -98,6 +110,20 @@ Experience GhostPilot's instant natural-language compiler, zero-risk dry-run ver
   <img src="assets/terminal-demo.svg" alt="GhostPilot Live Spotlight Demo" width="100%" />
   <p align="center"><sub><i>Interactive vector simulation of GhostPilot Spotlight (<kbd>Alt + Space</kbd>) parsing prompt intent, passing sandbox validation, and executing atomic actions silently without CMD windows.</i></sub></p>
 </div>
+
+<br>
+
+<div align="center">
+  <img src="assets/screenshots/spotlight-launcher.png" alt="GhostPilot Real Spotlight Launcher UI" width="75%" />
+  <p align="center"><sub><b>Figure 2:</b> Real running UI capture of GhostPilot Spotlight (<kbd>Alt + Space</kbd>) floating command bar with tactile Neo-Brutalist styling.</sub></p>
+</div>
+
+> [!TIP]
+> **Key Spotlight Launcher Highlights:**
+> - 👻 **Tactile Neo-Brutalist Frame**: 3px solid black border, hard unblurred drop shadow (`shadow-neo-xl`), and retro RGB window controls.
+> - ⚡ **Instant Status Beacon**: Real-time pill badge indicating compiler state (`READY`, `COMPILING...`, `SAFE`, or `RISK DETECTED`).
+> - 🚀 **1-Click Quick Action Templates**: Pre-configured templates (`#1 Organize Downloads`, `#2 Clean Temp Cache`, `#3 Batch Rename`) with hover-lift micro-interactions and instant compile triggers.
+> - 🖥️ **Full Studio Expansion**: Press <kbd>↵ Enter</kbd> to compile, <kbd>Esc</kbd> to dismiss, or click `Open Full Studio →` to expand into the multi-pane dashboard.
 
 ---
 
@@ -246,6 +272,22 @@ GhostPilot features an uncompromising, tactile **Neo-Brutalism interface** desig
 ```
 
 ### 1. Visual Workflow Node Pipeline (`[TRIGGER] ➔ [CONDITION] ➔ [ACTION]`)
+
+<div align="center">
+  <img src="assets/screenshots/studio-dashboard.png" alt="GhostPilot Studio Dashboard & Visual Workflow Pipeline" width="100%" />
+  <p align="center"><sub><b>Figure 3:</b> Real running UI capture of the Neo-Brutalism Studio Dashboard featuring live hardware telemetry, the horizontal node pipeline, embedded script inspector, and live console drawer.</sub></p>
+</div>
+
+> [!NOTE]
+> **Key Studio Dashboard Highlights:**
+> - 📊 **Real-Time Hardware Telemetry Strip**: Sub-millisecond Win32 kernel polling directly displaying live **CPU Load %**, **RAM Utilization** (used vs total GB), and **SQLite Database Persistence** status (`%APPDATA%\GhostPilot\ghostpilot.db`) without spawning background processes.
+> - 🧩 **Horizontal Visual Node Cards**: AI-compiled execution plans translated into clear, tactile pipeline blocks:
+>   - **`[TRIGGER]` (#FFD600 Electric Yellow):** Invoking event model (`HOTKEY`, `FILE_WATCHER`, `CRON_SCHEDULE`, or `MANUAL`) with debounce timings.
+>   - **`[CONDITION]` (#00E5FF Cyber Cyan):** Canonical Windows target directories (`C:\Users\...\Downloads`) and file extension filters (`*.pdf, *.zip`).
+>   - **`[ACTION]` (#B8FF00 Acid Lime):** Atomic operations (`SCAN_FILES`, `CREATE_DIR`, `ORGANIZE_FILES`) with collision-safe renaming.
+> - 💻 **Transpiled Script Inspector**: Dual-tab code viewer displaying deterministic, human-readable **Python 3** and **PowerShell 7** code with line numbers and a 1-click tactile `COPY CODE` button.
+> - 📟 **Live Brutalist Console Drawer**: Real-time monospace telemetry stream with color-coded tags (`[INFO]`, `[WATCHDOG]`, `[DRY-RUN]`, `[SUCCESS]`) and a live blinking heartbeat beacon.
+
 - **Horizontal Connected Cards:** Every parsed AI automation is rendered as a clean, connected pipeline of brutalist node blocks separated by high-contrast `➔` transition chips.
 - **High-Contrast Node Headers:**
   - **`[TRIGGER]` (#FFD600 Electric Yellow):** Identifies the invoking event (`HOTKEY`, `FILE_WATCHER`, `CRON_SCHEDULE`, `MANUAL`).
@@ -254,6 +296,19 @@ GhostPilot features an uncompromising, tactile **Neo-Brutalism interface** desig
 - **Embedded Script Inspector:** One-click toggle that transpiles the parsed workflow plan into deterministic, ready-to-run **Python 3** and **PowerShell 7** scripts with line numbers, Windows path handling, and a one-click `"COPY CODE"` button.
 
 ### 2. Hazard-Striped Dry-Run Sandbox Modal
+
+<div align="center">
+  <img src="assets/screenshots/dryrun-modal.png" alt="GhostPilot Hazard-Striped Dry-Run Sandbox Modal" width="100%" />
+  <p align="center"><sub><b>Figure 4:</b> Real running UI capture of the hazard-striped Safety Sandbox modal with exact canonical Windows paths and execution verification gate.</sub></p>
+</div>
+
+> [!IMPORTANT]
+> **Key Dry-Run Sandbox Highlights:**
+> - ⚠️ **Diagonal Hazard Border**: High-visibility warning perimeter (`repeating-linear-gradient(45deg, #FFD600 ... #000000)`) instantly alerting the operator to elevated or file-modifying operations.
+> - 📁 **Canonical Windows Absolute Paths**: Full filesystem transparency resolving user variables into absolute disk paths (`C:\Users\...\Downloads`) before touching disk.
+> - 🧮 **Impact Footprint & Affected Item Counter**: Previews exact matched files count (e.g., `30 items analyzed`) and total byte footprint with zero destructive side-effects.
+> - 🔒 **Two-Key Mechanical Confirmation Gate**: The crimson `EXECUTE ANYWAY` action button is physically locked and disabled until the operator actively checks the safety acknowledgement checkbox.
+
 - **Diagonal Hazard Border:** Destructive or elevated actions display a diagonal black-and-yellow hazard stripe banner:
   `repeating-linear-gradient(45deg, #FFD600, #FFD600 12px, #000000 12px, #000000 24px)`.
 - **Exact Windows File Paths Inspector:** Displays canonical absolute paths (`C:\Users\...`) and affected file counts before execution.

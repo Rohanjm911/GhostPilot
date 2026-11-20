@@ -62,6 +62,8 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
     if (injectedPrompt) {
       setPrompt(injectedPrompt);
       handleCompile(injectedPrompt);
+    } else {
+      handleCompile();
     }
   }, [injectedPrompt]);
 
