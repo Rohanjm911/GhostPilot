@@ -28,7 +28,6 @@ class GhostPilotEngine:
         self.settings = self.storage.get_settings()
         self.compiler = PromptCompiler(self.settings)
 
-        # Services
         self.watchdog_service = WatchdogService(self._on_watchdog_event)
         self.scheduler_service = SchedulerService(self._on_schedule_fired)
         
@@ -54,7 +53,6 @@ class GhostPilotEngine:
         """Callback when a watched directory event fires."""
         self.storage.increment_watchdog_trigger(watchdog_id)
         
-        # Find associated workflow
         wds = self.storage.list_watchdogs()
         matched = next((w for w in wds if w["id"] == watchdog_id), None)
         if matched and matched.get("workflow_id"):
@@ -94,12 +92,10 @@ class GhostPilotEngine:
         start_time = time.time()
         workflow_title = plan.get("title", "Unnamed Workflow")
 
-        # 1. If dry-run simulation requested
         if dry_run:
             sim_result = SafetySandbox.simulate_plan(plan)
             duration_ms = int((time.time() - start_time) * 1000)
 
-            # Record simulation in audit log
             self.storage.add_audit_log({
                 "trigger_type": trigger_type,
                 "workflow_name": workflow_title,
@@ -123,7 +119,6 @@ class GhostPilotEngine:
                 "simulation": sim_result
             }
 
-        # 2. Real Execution
         eval_result = SafetySandbox.evaluate_plan(plan)
         risk_level = eval_result["overall_risk"]
 
@@ -153,7 +148,6 @@ class GhostPilotEngine:
             duration_ms = int((time.time() - start_time) * 1000)
             overall_success = len(execution_errors) == 0
 
-            # Record audit log
             self.storage.add_audit_log({
                 "trigger_type": trigger_type,
                 "workflow_name": workflow_title,
@@ -236,7 +230,6 @@ class GhostPilotEngine:
             if not os.path.exists(source):
                 return {"success": False, "error": f"Source directory '{source}' does not exist."}
 
-            # Map extensions to destination directories
             ext_map = {}
             for r in rules:
                 ext = r.get("extension", "").lower().lstrip(".")
@@ -245,7 +238,6 @@ class GhostPilotEngine:
                     os.makedirs(tgt, exist_ok=True)
                     ext_map[ext] = tgt
 
-            # Perform file moves
             for item in os.listdir(source):
                 full_path = os.path.join(source, item)
                 if os.path.isfile(full_path):
@@ -253,7 +245,6 @@ class GhostPilotEngine:
                     dest_folder = ext_map.get(ext) or ext_map.get("*")
                     if dest_folder and os.path.abspath(source) != os.path.abspath(dest_folder):
                         dest_path = os.path.join(dest_folder, item)
-                        # Conflict handling
                         if os.path.exists(dest_path):
                             base, fext = os.path.splitext(item)
                             ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -292,7 +283,6 @@ class GhostPilotEngine:
                 for f in glob.glob(os.path.join(target, "*")):
                     if os.path.isfile(f):
                         try:
-                            # Only remove files older than 6 hours
                             mtime = os.path.getmtime(f)
                             if (time.time() - mtime) > 21600:
                                 os.remove(f)

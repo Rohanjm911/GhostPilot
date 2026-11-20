@@ -55,7 +55,6 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
     active_schedules: 1,
   });
 
-  // Query system stats periodically (optimized for low-end hardware & background tab throttling)
   useEffect(() => {
     const updateStats = async () => {
       if (document.hidden) return;
@@ -79,7 +78,6 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas text-ink select-none">
-      {/* Global Studio Top Header */}
       <header className="bg-white border-b-[3px] border-black px-6 py-3 flex items-center justify-between shadow-neo sticky top-0 z-30">
         <div className="flex items-center gap-3">
           <div className="bg-lime-acid border-[2.5px] border-black p-2 shadow-neo-sm flex items-center justify-center text-xl">
@@ -98,7 +96,6 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
           </div>
         </div>
 
-        {/* Live System Performance Pills & Launcher Button */}
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-2.5 font-mono text-xs">
             <div className="bg-[#F4F4F0] border-[2px] border-black px-3 py-1.5 flex items-center gap-2 shadow-[2px_2px_0px_#000]">
@@ -135,13 +132,10 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
         </div>
       </header>
 
-      {/* Main Studio Body: Sidebar + Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Navigation Sidebar */}
         <aside className="w-64 border-r-[3px] border-black bg-[#EAEAE4] flex flex-col justify-between shrink-0">
           <div className="p-4 space-y-2">
             <span className="text-[10px] font-mono font-black text-ink-muted uppercase tracking-wider block px-1 pb-0.5">
-              // Control Modules
             </span>
 
             {navItems.map((item) => {
@@ -166,7 +160,6 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
             })}
           </div>
 
-          {/* Sidebar Footer Info */}
           <div className="p-4 border-t-[2px] border-black bg-white space-y-2.5">
             <button
               onClick={onOpenHowToUse}
@@ -189,7 +182,6 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
           </div>
         </aside>
 
-        {/* Tab Content Panel */}
         <main className="flex-1 p-6 overflow-y-auto">
           <div className="max-w-5xl mx-auto space-y-6">
             {activeTab === 'studio' && (
@@ -209,7 +201,6 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
         </main>
       </div>
 
-      {/* Persistent Live Console Drawer */}
       <ConsoleDrawer logs={consoleLogs} onClear={onClearLogs} />
     </div>
   );

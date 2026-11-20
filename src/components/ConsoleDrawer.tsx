@@ -34,7 +34,6 @@ export const ConsoleDrawer: React.FC<ConsoleDrawerProps> = ({ logs, onClear }) =
   };
 
   const renderBadge = (log: ConsoleMessage) => {
-    // If text or source is DRY-RUN
     if (log.source === 'DRY-RUN' || log.text.toLowerCase().includes('dry-run') || log.text.toLowerCase().includes('simulation')) {
       return (
         <span className="bg-yellow-electric text-black border border-black px-1.5 py-0.2 font-mono text-[9px] font-black shrink-0 shadow-[1px_1px_0px_#000]">
@@ -75,7 +74,6 @@ export const ConsoleDrawer: React.FC<ConsoleDrawerProps> = ({ logs, onClear }) =
       );
     }
 
-    // Default INFO
     return (
       <span className="bg-white text-black border border-black px-1.5 py-0.2 font-mono text-[9px] font-black shrink-0 shadow-[1px_1px_0px_#000]">
         [INFO]
@@ -85,7 +83,6 @@ export const ConsoleDrawer: React.FC<ConsoleDrawerProps> = ({ logs, onClear }) =
 
   return (
     <div className="border-t-[3px] border-black bg-black text-white select-none transition-all font-mono">
-      {/* Header Tab / Control Bar */}
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="px-4 py-2.5 flex items-center justify-between cursor-pointer hover:bg-zinc-950 border-b border-zinc-800 transition-colors"
@@ -106,7 +103,6 @@ export const ConsoleDrawer: React.FC<ConsoleDrawerProps> = ({ logs, onClear }) =
         </div>
 
         <div className="flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
-          {/* Tactile Action Buttons */}
           <div className="flex items-center gap-2">
             <NeoButton
               variant="neutral"
@@ -136,7 +132,6 @@ export const ConsoleDrawer: React.FC<ConsoleDrawerProps> = ({ logs, onClear }) =
         </div>
       </div>
 
-      {/* Drawer Content */}
       {isOpen && (
         <div
           ref={scrollRef}

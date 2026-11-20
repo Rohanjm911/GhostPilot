@@ -1,11 +1,9 @@
 import { WorkflowPlan, WatchdogConfig, ScheduleConfig, AuditLogEntry, SystemStats, AppSettings } from '../types';
 
-// Check if running inside Tauri
 export const isTauri = (): boolean => {
   return typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window;
 };
 
-// Safe wrapper around tauri invoke
 async function invokeTauri<T>(cmd: string, args?: Record<string, any>): Promise<T> {
   if (isTauri()) {
     try {
@@ -16,7 +14,6 @@ async function invokeTauri<T>(cmd: string, args?: Record<string, any>): Promise<
       throw e;
     }
   } else {
-    // Web / Direct Dev preview fallback with realistic behavior
     return mockHandler<T>(cmd, args);
   }
 }
@@ -45,7 +42,6 @@ export const tauriApi = {
     invokeTauri<void>('resize_window_for_mode', { mode }),
 };
 
-// Fallback mock handlers for browser preview
 async function mockHandler<T>(cmd: string, args?: Record<string, any>): Promise<T> {
   await new Promise((r) => setTimeout(r, 180));
 

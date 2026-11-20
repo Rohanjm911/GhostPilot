@@ -60,7 +60,6 @@ class SchedulerService:
         expr = schedule_config.get("expression", "").lower().strip()
 
         with self.lock:
-            # Clear if already registered
             self.remove_job(sched_id)
 
             def make_trigger_func(sid: str):
@@ -87,7 +86,6 @@ class SchedulerService:
                     job = schedule.every(hours).hours.do(make_trigger_func(sched_id))
 
                 elif "day" in expr or "daily" in expr or "night" in expr:
-                    # Look for HH:MM
                     import re
                     match = re.search(r"(\d{1,2}):(\d{2})", expr)
                     if match:
@@ -97,7 +95,6 @@ class SchedulerService:
                     job = schedule.every().day.at(time_str).do(make_trigger_func(sched_id))
 
                 else:
-                    # Default fallback: every 30 minutes
                     job = schedule.every(30).minutes.do(make_trigger_func(sched_id))
 
                 if job:

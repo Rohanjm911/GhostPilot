@@ -22,7 +22,6 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
   const [selectedLang, setSelectedLang] = useState<'python' | 'powershell'>('python');
   const [copied, setCopied] = useState(false);
 
-  // Extract condition info
   const firstAction = plan.actions[0] || {};
   const filterList = firstAction.filter || [];
   const targetPath = firstAction.path || firstAction.source || '%USERPROFILE%\\Downloads';
@@ -39,14 +38,12 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
 
   return (
     <div className="space-y-4 select-none">
-      {/* Pipeline Title Bar */}
       <div className="flex items-center justify-between">
         <span className="font-mono text-xs font-black uppercase tracking-wider text-black flex items-center gap-2">
           <span>// VISUAL AUTOMATION PIPELINE</span>
           <NeoBadge label="3 STAGES" variant="black" size="sm" />
         </span>
 
-        {/* Script Inspector Toggle Button */}
         <NeoButton
           variant={showScriptInspector ? 'secondary' : 'neutral'}
           size="sm"
@@ -57,11 +54,7 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
         </NeoButton>
       </div>
 
-      {/* Connected Horizontal Brutalist Cards: [TRIGGER] ➔ [CONDITION] ➔ [ACTION] */}
       <div className="flex flex-col lg:flex-row items-stretch gap-3 overflow-x-auto pb-2">
-        {/* ========================================================= */}
-        {/* NODE 1: [TRIGGER] (Header: #FFD600 Electric Yellow)       */}
-        {/* ========================================================= */}
         <div className="flex-1 bg-white border-[2.5px] border-black shadow-neo flex flex-col justify-between min-w-[220px]">
           <div>
             <div className="bg-yellow-electric border-b-[2.5px] border-black px-3.5 py-2 flex items-center justify-between">
@@ -93,16 +86,12 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
           </div>
         </div>
 
-        {/* Chunky Connector Arrow */}
         <div className="flex items-center justify-center shrink-0 py-1 lg:py-0">
           <div className="w-9 h-9 bg-black text-lime-acid border-[2.5px] border-black font-mono font-black text-base flex items-center justify-center shadow-[2px_2px_0px_#B8FF00] rotate-90 lg:rotate-0">
             ➔
           </div>
         </div>
 
-        {/* ========================================================= */}
-        {/* NODE 2: [CONDITION / FILTER] (Header: #00E5FF Cyber Cyan) */}
-        {/* ========================================================= */}
         <div className="flex-1 bg-white border-[2.5px] border-black shadow-neo flex flex-col justify-between min-w-[240px]">
           <div>
             <div className="bg-cyan-cyber border-b-[2.5px] border-black px-3.5 py-2 flex items-center justify-between">
@@ -157,16 +146,12 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
           </div>
         </div>
 
-        {/* Chunky Connector Arrow */}
         <div className="flex items-center justify-center shrink-0 py-1 lg:py-0">
           <div className="w-9 h-9 bg-black text-lime-acid border-[2.5px] border-black font-mono font-black text-base flex items-center justify-center shadow-[2px_2px_0px_#B8FF00] rotate-90 lg:rotate-0">
             ➔
           </div>
         </div>
 
-        {/* ========================================================= */}
-        {/* NODE 3: [ACTION] (Header: #B8FF00 Acid Lime)              */}
-        {/* ========================================================= */}
         <div className="flex-1 bg-white border-[2.5px] border-black shadow-neo flex flex-col justify-between min-w-[260px]">
           <div>
             <div className="bg-lime-acid border-b-[2.5px] border-black px-3.5 py-2 flex items-center justify-between">
@@ -216,12 +201,8 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
         </div>
       </div>
 
-      {/* ========================================================= */}
-      {/* SCRIPT INSPECTOR DRAWER (Python / PowerShell)             */}
-      {/* ========================================================= */}
       {showScriptInspector && (
         <div className="bg-[#0D0D11] border-[2.5px] border-black shadow-neo-lg text-white font-mono overflow-hidden animate-in fade-in zoom-in-98 duration-150">
-          {/* Inspector Header & Language Selector */}
           <div className="bg-[#18181E] border-b-[2px] border-black px-4 py-2.5 flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2">
               <FileCode className="w-4 h-4 text-lime-acid" />
@@ -230,7 +211,6 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
               </span>
             </div>
 
-            {/* Language Switcher Tabs & Copy Button */}
             <div className="flex items-center gap-2">
               <div className="flex border-[1.5px] border-black bg-black">
                 <button
@@ -266,7 +246,6 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
             </div>
           </div>
 
-          {/* Code Body with Line Numbers */}
           <div className="p-4 overflow-x-auto max-h-72 overflow-y-auto text-xs leading-relaxed selection:bg-lime-acid selection:text-black">
             <pre className="font-mono text-zinc-300">
               {activeCode.split('\n').map((line, idx) => (
@@ -294,7 +273,6 @@ export const WorkflowPipelineView: React.FC<WorkflowPipelineViewProps> = ({ plan
             </pre>
           </div>
 
-          {/* Footer Bar */}
           <div className="bg-[#121216] border-t border-zinc-800 px-4 py-1.5 flex items-center justify-between text-[11px] text-zinc-400">
             <span>Syntax: {selectedLang === 'python' ? 'Python 3.14 (Standalone Engine)' : 'Microsoft PowerShell 7 Native'}</span>
             <span className="text-lime-acid font-bold">100% Offline Executable</span>

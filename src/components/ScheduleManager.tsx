@@ -15,7 +15,6 @@ export const ScheduleManager: React.FC<ScheduleManagerProps> = ({ onLogMessage }
   const [, setIsLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
 
-  // New Schedule State
   const [name, setName] = useState('');
   const [scheduleType, setScheduleType] = useState<'INTERVAL' | 'CRON'>('CRON');
   const [expression, setExpression] = useState('Every day at 22:00');
@@ -76,7 +75,6 @@ export const ScheduleManager: React.FC<ScheduleManagerProps> = ({ onLogMessage }
 
   return (
     <div className="space-y-6">
-      {/* Header Info Card */}
       <NeoCard
         title="BACKGROUND RECURRING SCHEDULES"
         headerColor="bg-yellow-electric"
@@ -103,7 +101,6 @@ export const ScheduleManager: React.FC<ScheduleManagerProps> = ({ onLogMessage }
         </p>
       </NeoCard>
 
-      {/* Add New Schedule Modal/Card */}
       {showAddModal && (
         <div className="bg-white border-[2.5px] border-black p-4 shadow-neo space-y-4 animate-in fade-in duration-150">
           <div className="flex items-center justify-between border-b-[2px] border-black pb-2">
@@ -160,7 +157,6 @@ export const ScheduleManager: React.FC<ScheduleManagerProps> = ({ onLogMessage }
         </div>
       )}
 
-      {/* Schedules List */}
       <div className="space-y-3">
         {schedules.length === 0 ? (
           <div className="bg-white border-[2.5px] border-black p-8 text-center shadow-neo space-y-2">
@@ -195,7 +191,6 @@ export const ScheduleManager: React.FC<ScheduleManagerProps> = ({ onLogMessage }
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div className="flex items-center gap-2 shrink-0">
                   <NeoButton
                     variant={isActive ? 'danger' : 'primary'}

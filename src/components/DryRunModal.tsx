@@ -44,7 +44,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-none animate-in fade-in duration-150 select-none">
       <div className="bg-canvas border-[3.5px] border-black shadow-[8px_8px_0px_#000] max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
-        {/* Diagonal Black & Yellow Hazard Stripe Top Accent for Destructive / Elevated Actions */}
         {requiresAcknowledgment && (
           <div
             className="h-4 border-b-[2.5px] border-black shrink-0 w-full"
@@ -54,7 +53,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
           />
         )}
 
-        {/* Modal Header */}
         <div
           className={`px-4 py-3 border-b-[3px] border-black flex items-center justify-between ${
             isHighRisk ? 'bg-coral-danger text-white' : isElevated ? 'bg-yellow-electric text-black' : 'bg-lime-acid text-black'
@@ -95,7 +93,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
           </div>
         </div>
 
-        {/* Hazard Warning Banner if Destructive */}
         {requiresAcknowledgment && (
           <div className="bg-yellow-electric border-b-[2.5px] border-black px-4 py-2 flex items-center justify-between font-mono text-xs font-black text-black">
             <div className="flex items-center gap-2">
@@ -108,9 +105,7 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
           </div>
         )}
 
-        {/* Modal Body */}
         <div className="p-5 overflow-y-auto space-y-4 flex-1">
-          {/* Plan Info Card */}
           <div className="bg-white border-[2.5px] border-black p-4 shadow-neo space-y-1">
             <div className="flex items-center justify-between">
               <h4 className="font-mono font-black text-sm uppercase text-black">{plan.title}</h4>
@@ -121,7 +116,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
             <p className="text-xs font-mono text-ink-muted">{plan.description}</p>
           </div>
 
-          {/* Metrics Overview */}
           <div className="grid grid-cols-3 gap-3">
             <div className="bg-white border-[2.5px] border-black p-3.5 shadow-neo">
               <span className="text-[10px] font-mono font-black text-ink-muted uppercase">Files Affected</span>
@@ -145,7 +139,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
             </div>
           </div>
 
-          {/* Warnings & Risk Reasons if any */}
           {simulation?.risk_assessment.reasons && simulation.risk_assessment.reasons.length > 0 && (
             <div className="bg-coral-danger/10 border-[2.5px] border-black p-4 space-y-1.5 shadow-neo">
               <div className="flex items-center gap-2 text-coral-danger font-mono font-black text-xs uppercase">
@@ -160,7 +153,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
             </div>
           )}
 
-          {/* Exact Windows File Paths Affected Inspector */}
           {simulation && simulation.affected_items_preview.length > 0 && (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
@@ -187,7 +179,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
             </div>
           )}
 
-          {/* Simulation Step Breakdown */}
           {simulation?.steps && (
             <div className="space-y-2">
               <span className="text-xs font-mono font-black text-ink uppercase tracking-wider">
@@ -214,7 +205,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
             </div>
           )}
 
-          {/* Safety Confirmation Checkbox with Hazard Striping */}
           {requiresAcknowledgment && (
             <div className="bg-yellow-electric/30 border-[2.5px] border-black p-4 space-y-2 shadow-neo">
               <label className="flex items-start gap-3 cursor-pointer select-none">
@@ -232,7 +222,6 @@ export const DryRunModal: React.FC<DryRunModalProps> = ({
           )}
         </div>
 
-        {/* Modal Footer */}
         <div className="px-5 py-3.5 bg-[#EAEAE4] border-t-[3px] border-black flex items-center justify-between">
           <div className="text-xs font-mono font-bold text-ink-muted">
             {isLoading ? 'Running simulation...' : 'Dry-Run Simulation: 0 bits altered'}

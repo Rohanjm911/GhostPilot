@@ -93,7 +93,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none animate-in fade-in duration-150 select-none">
       <div className="bg-[#F4F4F0] border-[3.5px] border-black shadow-[8px_8px_0px_#000] max-w-3xl w-full max-h-[88vh] flex flex-col overflow-hidden">
-        {/* Top Header */}
         <div className="bg-lime-acid border-b-[3px] border-black px-5 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="bg-black text-white p-1 border border-black shadow-[1px_1px_0px_#000]">
@@ -120,7 +119,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
           </button>
         </div>
 
-        {/* Tab Navigation Strip */}
         <div className="bg-[#E5E5DE] border-b-[2.5px] border-black px-4 py-2 flex items-center gap-1.5 overflow-x-auto">
           {GUIDE_TABS.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -141,9 +139,7 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
           })}
         </div>
 
-        {/* Modal Scrollable Content */}
         <div className="p-6 overflow-y-auto space-y-6 flex-1 bg-[#F4F4F0]">
-          {/* TAB 1: QUICK START */}
           {activeTab === 'quickstart' && (
             <div className="space-y-5">
               <div className="bg-white border-[2.5px] border-black p-4 shadow-neo-sm space-y-2">
@@ -202,7 +198,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
             </div>
           )}
 
-          {/* TAB 2: PROMPTS CHEAT SHEET */}
           {activeTab === 'prompts' && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -260,7 +255,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
             </div>
           )}
 
-          {/* TAB 3: SAFETY SANDBOX */}
           {activeTab === 'safety' && (
             <div className="space-y-4">
               <div className="bg-white border-[2.5px] border-black p-4 shadow-neo-sm space-y-2">
@@ -311,7 +305,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
             </div>
           )}
 
-          {/* TAB 4: WATCHDOGS & CRON */}
           {activeTab === 'automation' && (
             <div className="space-y-4 font-mono text-xs">
               <div className="bg-white border-[2.5px] border-black p-4 shadow-neo-sm space-y-2">
@@ -334,7 +327,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
             </div>
           )}
 
-          {/* TAB 5: SHORTCUTS CHEAT SHEET */}
           {activeTab === 'shortcuts' && (
             <div className="space-y-3 font-mono text-xs">
               <span className="font-bold uppercase tracking-wider text-black block pb-1">
@@ -361,7 +353,6 @@ export const HowToUseModal: React.FC<HowToUseModalProps> = ({
           )}
         </div>
 
-        {/* Modal Footer */}
         <div className="px-6 py-3.5 bg-[#EAEAE4] border-t-[3px] border-black flex items-center justify-between">
           <span className="font-mono text-xs text-ink-muted">
             GhostPilot v1.0.0 // Standalone Edition

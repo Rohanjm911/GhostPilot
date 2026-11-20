@@ -77,10 +77,8 @@ export const CommandBar: React.FC<CommandBarProps> = ({
 
   return (
     <div className="w-full max-w-[680px] mx-auto bg-canvas border-[3px] border-black shadow-neo-xl select-none animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
-      {/* Top Header Bar */}
       <div className="bg-black text-white px-4 py-2.5 flex items-center justify-between border-b-[2.5px] border-black">
         <div className="flex items-center gap-2.5">
-          {/* Retro Window Dot Controls */}
           <div className="flex items-center gap-1.5 mr-1">
             <span className="w-2.5 h-2.5 rounded-full bg-coral-danger border border-black inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-yellow-electric border border-black inline-block" />
@@ -131,7 +129,6 @@ export const CommandBar: React.FC<CommandBarProps> = ({
         </div>
       </div>
 
-      {/* Main Input Field */}
       <div className="p-4 bg-white border-b-[2.5px] border-black">
         <div className="flex items-center gap-3">
           <div className="bg-lime-acid border-[2.5px] border-black p-2 shadow-neo-sm">
@@ -168,7 +165,6 @@ export const CommandBar: React.FC<CommandBarProps> = ({
         </div>
       </div>
 
-      {/* Error Message if any */}
       {errorMsg && (
         <div className="bg-coral-danger/10 border-b-[2px] border-black px-4 py-2 flex items-center gap-2 text-xs font-mono font-bold text-coral-danger">
           <ShieldAlert className="w-4 h-4" />
@@ -176,7 +172,6 @@ export const CommandBar: React.FC<CommandBarProps> = ({
         </div>
       )}
 
-      {/* Compiled Execution Preview in Spotlight */}
       {compiledPlan && (
         <div className="p-4 bg-[#F8F8F5] border-b-[2.5px] border-black space-y-3">
           <div className="flex items-center justify-between">
@@ -198,7 +193,6 @@ export const CommandBar: React.FC<CommandBarProps> = ({
 
           <p className="text-xs text-ink-muted font-mono">{compiledPlan.description}</p>
 
-          {/* Quick Actions in Spotlight */}
           <div className="flex items-center justify-end gap-2 pt-1">
             <NeoButton
               variant="neutral"
@@ -220,7 +214,6 @@ export const CommandBar: React.FC<CommandBarProps> = ({
         </div>
       )}
 
-      {/* Prompt Suggestions */}
       {!compiledPlan && (
         <div className="p-3.5 bg-canvas space-y-2">
           <div className="flex items-center justify-between">
@@ -252,7 +245,6 @@ export const CommandBar: React.FC<CommandBarProps> = ({
         </div>
       )}
 
-      {/* Keyboard Hint Footer */}
       <div className="bg-[#EAEAE4] px-4 py-2 border-t-[2px] border-black flex items-center justify-between text-[11px] font-mono text-ink-muted">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1">

@@ -112,7 +112,6 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Prompt Compiler Card */}
       <NeoCard
         title="NATURAL LANGUAGE WORKFLOW COMPILER"
         headerColor="bg-lime-acid"
@@ -145,7 +144,6 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
             </div>
           </div>
 
-          {/* Quick Prompt Chips */}
           <div className="space-y-1.5 pt-1">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono font-bold text-ink-muted uppercase">
@@ -180,10 +178,8 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
         </div>
       </NeoCard>
 
-      {/* Compiled Execution Plan Section */}
       {compiledPlan ? (
         <div className="space-y-4">
-          {/* Plan Header Card */}
           <div className="bg-white border-[2.5px] border-black p-4 shadow-neo flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="space-y-1">
               <div className="flex items-center gap-2 flex-wrap">
@@ -204,7 +200,6 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
               <p className="font-mono text-xs text-ink-muted">{compiledPlan.description}</p>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex items-center gap-2 shrink-0">
               <NeoButton
                 variant="neutral"
@@ -235,10 +230,8 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
             </div>
           </div>
 
-          {/* Visual Workflow Node Pipeline: [TRIGGER] ➔ [CONDITION] ➔ [ACTION] */}
           <WorkflowPipelineView plan={compiledPlan} />
 
-          {/* Node Cards Chain */}
           <div className="space-y-1">
             <div className="flex items-center justify-between px-1">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-black">
@@ -262,7 +255,6 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
           </div>
         </div>
       ) : (
-        /* Empty State */
         <div className="border-[2.5px] border-dashed border-black/40 p-12 text-center bg-white/40 space-y-3">
           <div className="w-12 h-12 bg-yellow-electric border-[2px] border-black mx-auto flex items-center justify-center shadow-neo-sm">
             <Zap className="w-6 h-6 text-black" />

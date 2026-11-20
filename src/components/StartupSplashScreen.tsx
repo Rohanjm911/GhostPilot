@@ -24,7 +24,6 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
-    // Progress bar animation timer
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -35,14 +34,12 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
       });
     }, 40);
 
-    // Staggered boot logs
     const timers = BOOT_STEPS.map((step, idx) =>
       setTimeout(() => {
         setCurrentStepIndex(idx);
       }, step.delay)
     );
 
-    // Auto-transition to studio dashboard
     const finishTimer = setTimeout(() => {
       handleFinish();
     }, 2400);
@@ -75,12 +72,9 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
         isFadingOut ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
       }`}
     >
-      {/* Background Matrix / Grid lines */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
 
-      {/* Main Neo-Brutalist Splash Card */}
       <div className="relative w-full max-w-xl mx-4 bg-[#121215] border-[3.5px] border-lime-acid shadow-[8px_8px_0px_#B8FF00] overflow-hidden">
-        {/* Top Header Strip */}
         <div className="bg-lime-acid text-black px-4 py-2 flex items-center justify-between border-b-[3px] border-black font-mono font-extrabold text-xs tracking-wider">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 bg-black animate-ping" />
@@ -91,9 +85,7 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
           </span>
         </div>
 
-        {/* Card Body */}
         <div className="p-8 space-y-6">
-          {/* Hero Branding Section */}
           <div className="flex items-center gap-5">
             <div className="relative">
               <div className="w-20 h-20 bg-lime-acid border-[3px] border-black flex items-center justify-center shadow-[4px_4px_0px_#000] rotate-[-2deg] transition-transform hover:rotate-0">
@@ -119,7 +111,6 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
             </div>
           </div>
 
-          {/* Animated Terminal Boot Logs */}
           <div className="bg-black border-[2.5px] border-zinc-700 p-4 font-mono text-xs space-y-1.5 shadow-[3px_3px_0px_#000]">
             <div className="flex items-center justify-between text-[10px] text-zinc-500 border-b border-zinc-800 pb-1 mb-2">
               <span className="flex items-center gap-1.5 text-lime-acid font-bold">
@@ -151,7 +142,6 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
             })}
           </div>
 
-          {/* Progress Bar & Percent */}
           <div className="space-y-2">
             <div className="flex items-center justify-between font-mono text-xs">
               <span className="text-zinc-400 uppercase font-bold flex items-center gap-1.5">
@@ -168,7 +158,6 @@ export const StartupSplashScreen: React.FC<StartupSplashScreenProps> = ({
             </div>
           </div>
 
-          {/* Action Footer Buttons */}
           <div className="pt-2 flex items-center justify-between border-t border-zinc-800">
             <span className="font-mono text-[11px] text-zinc-500">
               Shortcut: <kbd className="bg-zinc-800 text-zinc-200 px-1 py-0.5 border border-zinc-700">Alt + Space</kbd>

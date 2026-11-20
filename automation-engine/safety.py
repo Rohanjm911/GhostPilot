@@ -10,7 +10,6 @@ import glob
 from pathlib import Path
 from typing import Dict, List, Any, Tuple
 
-# System protected paths where modification is dangerous
 RESTRICTED_SYSTEM_PATHS = [
     r"^[a-zA-Z]:\\Windows.*",
     r"^[a-zA-Z]:\\System Volume Information.*",
@@ -37,7 +36,6 @@ class SafetySandbox:
         for pattern in RESTRICTED_SYSTEM_PATHS:
             if re.match(pattern, normalized, re.IGNORECASE):
                 return True
-        # Check if attempting to operate directly on drive root
         if re.match(r"^[a-zA-Z]:\\?$", normalized):
             return True
         return False
@@ -52,12 +50,10 @@ class SafetySandbox:
         act_type = action.get("type", "").upper()
         target_path = action.get("path") or action.get("source") or ""
 
-        # Check for system paths
         if cls.is_restricted_path(target_path):
             reasons.append(f"Target path '{target_path}' resides in a protected Windows system directory.")
             return "HIGH_RISK", reasons
 
-        # Action-specific risk checks
         if act_type in ["DELETE_FILES", "PERMANENT_DELETE", "PURGE"]:
             params = action.get("params", {})
             reasons.append("Action permanently deletes files or folders from the disk.")
@@ -92,7 +88,6 @@ class SafetySandbox:
             return "SAFE", []
 
         if act_type in ["CLEAN_TEMP_FILES"]:
-            # Temp cleanup is safe if restricted to standard user Temp
             user_temp = os.environ.get("TEMP", "").lower()
             if target_path and target_path.lower() not in user_temp:
                 reasons.append(f"Cleaning non-standard temporary folder '{target_path}'.")

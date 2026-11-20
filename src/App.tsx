@@ -22,7 +22,6 @@ export function App() {
   const [simulationResult, setSimulationResult] = useState<SimulationResult | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
 
-  // Console messages buffer
   const [consoleLogs, setConsoleLogs] = useState<ConsoleMessage[]>([
     {
       id: 'init_1',
@@ -62,7 +61,6 @@ export function App() {
     setConsoleLogs((prev) => [...prev.slice(-150), newMsg]);
   };
 
-  // Listen for Tauri backend events & hotkeys
   useEffect(() => {
     const handleToggleSpotlight = () => {
       setViewMode((prev) => {
@@ -81,7 +79,6 @@ export function App() {
     window.addEventListener('toggle-spotlight', handleToggleSpotlight);
     window.addEventListener('switch-mode', handleSwitchMode);
 
-    // Keyboard fallback listener for Alt+Space inside browser window
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.altKey && e.code === 'Space') {
         e.preventDefault();
@@ -100,7 +97,6 @@ export function App() {
     };
   }, []);
 
-  // Auto-open dry-run modal if requested via URL
   useEffect(() => {
     if (urlParams?.get('dryrun') === 'true') {
       tauriApi
@@ -111,7 +107,6 @@ export function App() {
     }
   }, []);
 
-  // Handle dry-run simulation modal
   const handleOpenDryRun = async (plan: WorkflowPlan) => {
     setActivePlanForSim(plan);
     setIsSimulating(true);
@@ -135,7 +130,6 @@ export function App() {
     }
   };
 
-  // Handle real execution
   const handleExecute = async (plan: WorkflowPlan) => {
     addLog('ENGINE', 'INFO', `Executing workflow: "${plan.title}" (Risk: ${plan.risk_level})`);
 
@@ -162,7 +156,6 @@ export function App() {
 
   return (
     <div className="relative min-h-screen bg-canvas font-sans text-ink">
-      {/* Sleek Animated Startup Splash Screen */}
       {showSplash && (
         <StartupSplashScreen
           onComplete={() => setShowSplash(false)}
@@ -213,7 +206,6 @@ export function App() {
         </div>
       )}
 
-      {/* Interactive How To Use Modal */}
       <HowToUseModal
         isOpen={showHowToUse}
         onClose={() => setShowHowToUse(false)}
@@ -223,7 +215,6 @@ export function App() {
         }}
       />
 
-      {/* Dry-Run Simulation Modal */}
       {activePlanForSim && (
         <DryRunModal
           plan={activePlanForSim}

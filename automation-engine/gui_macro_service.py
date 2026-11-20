@@ -10,7 +10,6 @@ from typing import Dict, List, Any, Optional
 
 try:
     import pyautogui
-    # Configure safety fail-safe
     pyautogui.FAILSAFE = True
     pyautogui.PAUSE = 0.1
     PYAUTOGUI_AVAILABLE = True
@@ -30,7 +29,6 @@ class GuiMacroService:
         """Launches an application or executable."""
         try:
             flags = subprocess.CREATE_NO_WINDOW if hasattr(subprocess, "CREATE_NO_WINDOW") else 0
-            # Check if command is a common keyword e.g. 'code', 'spotify', 'notepad'
             cmd = command_or_path.strip()
             if cmd == "code":
                 subprocess.Popen(["cmd.exe", "/c", "code"], shell=True, creationflags=flags)

@@ -6,7 +6,6 @@ Provides JSON-RPC stdio server interface, background daemon, and standalone CLI 
 import sys
 import os
 
-# Ensure current engine directory is always on path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import json
@@ -174,24 +173,19 @@ def main():
     parser = argparse.ArgumentParser(description="GhostPilot Automation Worker")
     subparsers = parser.add_subparsers(dest="subcommand")
 
-    # server command
     subparsers.add_parser("server", help="Run stdio JSON-RPC server")
 
-    # compile command
     compile_p = subparsers.add_parser("compile", help="Compile a plain English prompt")
     compile_p.add_argument("--prompt", required=True, help="Natural language prompt")
 
-    # execute command
     exec_p = subparsers.add_parser("execute", help="Execute or simulate workflow plan")
     exec_p.add_argument("--plan", help="JSON string of plan")
     exec_p.add_argument("--plan-file", help="Path to JSON file containing plan")
     exec_p.add_argument("--dry-run", action="store_true", help="Run simulation only")
     exec_p.add_argument("--trigger-type", default="MANUAL", help="Trigger source (MANUAL, SCHEDULE, WATCHDOG)")
 
-    # stats command
     subparsers.add_parser("stats", help="Get system and worker metrics")
 
-    # storage command
     storage_p = subparsers.add_parser("storage", help="Query or mutate local storage entities")
     storage_p.add_argument("--action", required=True, help="Storage action to perform")
     storage_p.add_argument("--id", help="Entity ID")

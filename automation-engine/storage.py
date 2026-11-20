@@ -22,7 +22,6 @@ def get_db_path() -> Path:
         target_dir.mkdir(parents=True, exist_ok=True)
         return target_dir / "ghostpilot.db"
     except Exception:
-        # Fallback to local working directory
         local_dir = Path(__file__).parent
         return local_dir / "ghostpilot.db"
 
@@ -40,7 +39,6 @@ class StorageManager:
         with self.get_connection() as conn:
             cursor = conn.cursor()
             
-            # Workflows table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS workflows (
                 id TEXT PRIMARY KEY,
@@ -55,7 +53,6 @@ class StorageManager:
             )
             """)
 
-            # Watchdogs table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS watchdogs (
                 id TEXT PRIMARY KEY,
@@ -72,7 +69,6 @@ class StorageManager:
             )
             """)
 
-            # Scheduled jobs table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS schedules (
                 id TEXT PRIMARY KEY,
@@ -88,7 +84,6 @@ class StorageManager:
             )
             """)
 
-            # Audit logs table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS audit_logs (
                 id TEXT PRIMARY KEY,
@@ -103,7 +98,6 @@ class StorageManager:
             )
             """)
 
-            # Settings table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS settings (
                 key TEXT PRIMARY KEY,
@@ -121,7 +115,6 @@ class StorageManager:
         if count == 0:
             now = datetime.datetime.now(datetime.timezone.utc).isoformat()
             
-            # 1. Downloads organizer
             downloads_path = str(Path.home() / "Downloads").replace("\\", "/")
             wf1_plan = {
                 "id": "wf_downloads_organizer",
@@ -174,7 +167,6 @@ class StorageManager:
                 now
             ))
 
-            # Sample schedule
             cursor.execute("""
             INSERT INTO schedules (id, name, schedule_type, expression, workflow_id, active, created_at)
             VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -188,7 +180,6 @@ class StorageManager:
                 now
             ))
 
-            # Sample watchdog
             cursor.execute("""
             INSERT INTO watchdogs (id, name, watch_path, file_patterns, events, workflow_id, active, trigger_count, created_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -204,7 +195,6 @@ class StorageManager:
                 now
             ))
 
-            # Sample initial audit log
             cursor.execute("""
             INSERT INTO audit_logs (id, timestamp, trigger_type, workflow_name, status, risk_level, affected_files_count, duration_ms, details_json)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -223,7 +213,6 @@ class StorageManager:
                 })
             ))
 
-            # Default settings
             default_settings = {
                 "llm_provider": "ollama",
                 "ollama_host": "http://localhost:11434",
@@ -244,7 +233,6 @@ class StorageManager:
 
             conn.commit()
 
-    # --- Workflows CRUD ---
     def list_workflows(self) -> List[Dict[str, Any]]:
         with self.get_connection() as conn:
             cursor = conn.cursor()
@@ -287,7 +275,6 @@ class StorageManager:
             conn.commit()
             return cursor.rowcount > 0
 
-    # --- Watchdogs CRUD ---
     def list_watchdogs(self) -> List[Dict[str, Any]]:
         with self.get_connection() as conn:
             cursor = conn.cursor()
@@ -340,7 +327,6 @@ class StorageManager:
             conn.commit()
             return cursor.rowcount > 0
 
-    # --- Schedules CRUD ---
     def list_schedules(self) -> List[Dict[str, Any]]:
         with self.get_connection() as conn:
             cursor = conn.cursor()
@@ -380,7 +366,6 @@ class StorageManager:
             conn.commit()
             return cursor.rowcount > 0
 
-    # --- Audit Logs ---
     def list_audit_logs(self, limit: int = 100) -> List[Dict[str, Any]]:
         with self.get_connection() as conn:
             cursor = conn.cursor()
@@ -415,7 +400,6 @@ class StorageManager:
             conn.commit()
             return True
 
-    # --- Settings ---
     def get_settings(self) -> Dict[str, Any]:
         with self.get_connection() as conn:
             cursor = conn.cursor()

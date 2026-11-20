@@ -75,7 +75,6 @@ class PromptCompiler:
         provider = self.settings.get("llm_provider", "ollama")
         prompt = prompt.strip()
 
-        # Try LLM provider if configured
         plan = None
         if provider == "ollama":
             plan = self._call_ollama(prompt)
@@ -84,11 +83,9 @@ class PromptCompiler:
         elif provider == "gemini":
             plan = self._call_gemini(prompt)
 
-        # If LLM didn't return or was unavailable, use deterministic rule-based heuristic compiler
         if not plan:
             plan = self.compile_heuristic(prompt)
 
-        # Validate risk and attach sandbox assessment
         eval_result = SafetySandbox.evaluate_plan(plan)
         plan["risk_level"] = eval_result["overall_risk"]
         plan["risk_assessment"] = eval_result
@@ -100,9 +97,7 @@ class PromptCompiler:
         host = self.settings.get("ollama_host", "http://localhost:11434").rstrip("/")
         model = self.settings.get("ollama_model", "qwen2.5-coder")
         
-        # Fast probe check (100ms) to see if Ollama port is open
         try:
-            # Parse host and port
             from urllib.parse import urlparse
             parsed = urlparse(host)
             h = parsed.hostname or "127.0.0.1"
@@ -110,7 +105,6 @@ class PromptCompiler:
             with socket.create_connection((h, p), timeout=0.2):
                 pass
         except Exception:
-            # Port closed or Ollama not running; instantly skip
             return None
 
         url = f"{host}/api/generate"
@@ -224,7 +218,6 @@ class PromptCompiler:
         p_lower = prompt.lower()
         now_ts = int(time.time())
 
-        # Determine target base path
         base_path = user_paths["downloads"]
         folder_label = "Downloads"
         if "desktop" in p_lower:
@@ -240,7 +233,6 @@ class PromptCompiler:
             base_path = user_paths["temp"]
             folder_label = "Temp"
 
-        # Determine trigger type
         trigger = {"type": "MANUAL", "expression": "1-click execution"}
         if "every night at" in p_lower or "daily at" in p_lower or "at 10 pm" in p_lower or "at 22" in p_lower:
             time_match = re.search(r"(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)", p_lower)
@@ -255,7 +247,6 @@ class PromptCompiler:
         elif "when" in p_lower and ("added" in p_lower or "created" in p_lower or "new file" in p_lower or "modified" in p_lower):
             trigger = {"type": "WATCHDOG", "expression": "*.pdf, *.zip", "path": base_path}
 
-        # Recognize file extensions mentioned
         filters = []
         ext_map = {
             "pdf": "*.pdf",
@@ -290,7 +281,6 @@ class PromptCompiler:
             else:
                 filters = ["*.pdf", "*.zip"]
 
-        # CASE 1: Organize / Sort into subfolders
         if any(w in p_lower for w in ["organize", "sort", "categorize", "separate"]):
             rules = []
             subdirs = []
@@ -346,7 +336,6 @@ class PromptCompiler:
                 ]
             }
 
-        # CASE 2: Clean up temporary files
         if any(w in p_lower for w in ["clean", "cleanup", "purge", "clear temp", "empty temp"]):
             target = user_paths["temp"] if "temp" in p_lower else base_path
             return {
@@ -375,7 +364,6 @@ class PromptCompiler:
                 ]
             }
 
-        # CASE 3: Batch Rename
         if any(w in p_lower for w in ["rename", "batch rename", "prefix", "suffix"]):
             return {
                 "id": f"wf_rename_{now_ts}",
@@ -403,7 +391,6 @@ class PromptCompiler:
                 ]
             }
 
-        # CASE 4: App Launch / GUI macro
         if any(w in p_lower for w in ["launch", "open", "start", "run"]):
             apps = []
             if "code" in p_lower or "vs code" in p_lower:
@@ -435,7 +422,6 @@ class PromptCompiler:
                 "actions": actions
             }
 
-        # CASE 5: Process Monitor / Kill
         if any(w in p_lower for w in ["kill", "terminate", "close process", "ram exceeds", "cpu exceeds"]):
             target_proc = "node.exe"
             if "chrome" in p_lower:
@@ -461,7 +447,6 @@ class PromptCompiler:
                 ]
             }
 
-        # Fallback Generic Plan
         return {
             "id": f"wf_gen_{now_ts}",
             "title": f"Custom Automation: {prompt[:35]}...",

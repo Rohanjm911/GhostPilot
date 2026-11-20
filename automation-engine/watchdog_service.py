@@ -73,7 +73,6 @@ class WatchdogService:
         events = [e.strip() for e in events_raw.split(",") if e.strip()]
 
         with self.lock:
-            # Stop existing observer if present
             self.stop_watch(watch_id)
 
             def event_handler(wid: str, evt_type: str, fpath: str):

@@ -53,7 +53,6 @@ export const WorkflowNodeCard: React.FC<WorkflowNodeCardProps> = ({ step, index,
   return (
     <div className="relative flex flex-col">
       <div className="bg-white border-[2.5px] border-black shadow-neo transition-transform hover:-translate-y-0.5">
-        {/* Step Header */}
         <div className={`px-3 py-2 border-b-[2.5px] border-black flex items-center justify-between ${getHeaderStyle(step.type)}`}>
           <div className="flex items-center gap-2">
             <div className="p-1 bg-white border border-black shadow-[1px_1px_0px_#000]">
@@ -66,11 +65,9 @@ export const WorkflowNodeCard: React.FC<WorkflowNodeCardProps> = ({ step, index,
           <NeoBadge label={`STEP ${index + 1}/${totalSteps}`} variant="white" size="sm" />
         </div>
 
-        {/* Step Body */}
         <div className="p-3.5 space-y-2.5">
           <h4 className="font-bold text-sm text-ink tracking-tight">{step.title}</h4>
 
-          {/* Path detail */}
           {(step.path || step.source) && (
             <div className="space-y-1">
               <span className="text-[10px] font-mono font-bold text-ink-muted uppercase">Target Path:</span>
@@ -80,7 +77,6 @@ export const WorkflowNodeCard: React.FC<WorkflowNodeCardProps> = ({ step, index,
             </div>
           )}
 
-          {/* Filters */}
           {step.filter && (
             <div className="flex items-center gap-1.5 flex-wrap pt-1">
               <span className="text-[10px] font-mono font-bold text-ink-muted uppercase">Filter:</span>
@@ -95,7 +91,6 @@ export const WorkflowNodeCard: React.FC<WorkflowNodeCardProps> = ({ step, index,
             </div>
           )}
 
-          {/* Rules preview */}
           {step.rules && (
             <div className="space-y-1 pt-1">
               <span className="text-[10px] font-mono font-bold text-ink-muted uppercase">Sorting Rules:</span>
@@ -113,7 +108,6 @@ export const WorkflowNodeCard: React.FC<WorkflowNodeCardProps> = ({ step, index,
         </div>
       </div>
 
-      {/* Downward Connector Arrow if not last */}
       {index < totalSteps - 1 && (
         <div className="flex justify-center items-center py-2 text-black">
           <div className="w-1 h-3 bg-black"></div>

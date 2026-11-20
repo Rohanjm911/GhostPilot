@@ -59,7 +59,6 @@ export const AuditLogs: React.FC<AuditLogsProps> = ({ onLogMessage }) => {
 
   return (
     <div className="space-y-6">
-      {/* Header Info Card */}
       <NeoCard
         title="EXECUTION AUDIT LOGS & TRACES"
         headerColor="bg-[#E4E4DC]"
@@ -81,7 +80,6 @@ export const AuditLogs: React.FC<AuditLogsProps> = ({ onLogMessage }) => {
         </p>
       </NeoCard>
 
-      {/* Logs Table */}
       <div className="bg-white border-[2.5px] border-black shadow-neo overflow-hidden">
         {logs.length === 0 ? (
           <div className="p-8 text-center space-y-2">
@@ -146,7 +144,6 @@ export const AuditLogs: React.FC<AuditLogsProps> = ({ onLogMessage }) => {
                         <td className="p-3 text-right text-ink-muted">{log.duration_ms}ms</td>
                       </tr>
 
-                      {/* Expanded Details Row */}
                       {isExpanded && (
                         <tr className="bg-[#F8F8F5]">
                           <td colSpan={8} className="p-4 border-t border-b border-black">

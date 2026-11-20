@@ -79,7 +79,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onLogMessage }) => {
         </p>
       </NeoCard>
 
-      {/* AI LLM Provider Configuration */}
       <div className="bg-white border-[2.5px] border-black p-5 shadow-neo space-y-4">
         <div className="border-b-[2px] border-black pb-2 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -89,7 +88,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onLogMessage }) => {
           <NeoBadge label="LOCAL / CLOUD" variant="yellow" />
         </div>
 
-        {/* Provider Radio Tabs */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
             { id: 'ollama', label: 'Local Ollama', badge: 'OFFLINE/PRIVATE' },
@@ -113,7 +111,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onLogMessage }) => {
           })}
         </div>
 
-        {/* Ollama Settings */}
         {settings.llm_provider === 'ollama' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <div className="space-y-1">
@@ -139,7 +136,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onLogMessage }) => {
           </div>
         )}
 
-        {/* OpenAI Settings */}
         {settings.llm_provider === 'openai' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <div className="space-y-1">
@@ -165,7 +161,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onLogMessage }) => {
           </div>
         )}
 
-        {/* Gemini Settings */}
         {settings.llm_provider === 'gemini' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <div className="space-y-1">
@@ -192,7 +187,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onLogMessage }) => {
         )}
       </div>
 
-      {/* Safety Sandbox & System Options */}
       <div className="bg-white border-[2.5px] border-black p-5 shadow-neo space-y-4">
         <div className="border-b-[2px] border-black pb-2 flex items-center justify-between">
           <div className="flex items-center gap-2">

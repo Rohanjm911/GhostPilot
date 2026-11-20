@@ -15,7 +15,6 @@ export const WatchdogManager: React.FC<WatchdogManagerProps> = ({ onLogMessage }
   const [, setIsLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
 
-  // New Watchdog Form State
   const [name, setName] = useState('');
   const [watchPath, setWatchPath] = useState('C:/Users/WindowsUser/Downloads');
   const [patterns, setPatterns] = useState('*.pdf, *.zip');
@@ -79,7 +78,6 @@ export const WatchdogManager: React.FC<WatchdogManagerProps> = ({ onLogMessage }
 
   return (
     <div className="space-y-6">
-      {/* Header Info Card */}
       <NeoCard
         title="REAL-TIME DIRECTORY WATCHDOGS"
         headerColor="bg-cyan-cyber"
@@ -106,7 +104,6 @@ export const WatchdogManager: React.FC<WatchdogManagerProps> = ({ onLogMessage }
         </p>
       </NeoCard>
 
-      {/* Add New Watchdog Card */}
       {showAddModal && (
         <div className="bg-white border-[2.5px] border-black p-4 shadow-neo space-y-4 animate-in fade-in duration-150">
           <div className="flex items-center justify-between border-b-[2px] border-black pb-2">
@@ -176,7 +173,6 @@ export const WatchdogManager: React.FC<WatchdogManagerProps> = ({ onLogMessage }
         </div>
       )}
 
-      {/* Watchdogs List */}
       <div className="space-y-3">
         {watchdogs.length === 0 ? (
           <div className="bg-white border-[2.5px] border-black p-8 text-center shadow-neo space-y-2">
@@ -219,7 +215,6 @@ export const WatchdogManager: React.FC<WatchdogManagerProps> = ({ onLogMessage }
                   </div>
                 </div>
 
-                {/* Control Toggle */}
                 <div className="flex items-center gap-2 shrink-0">
                   <NeoButton
                     variant={isActive ? 'danger' : 'primary'}
